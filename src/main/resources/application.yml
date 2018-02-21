@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: cloud-dashboard
+server:
+  port: 8766
