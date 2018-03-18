@@ -13,3 +13,11 @@ security:
   user:
     name: admin #預設: user
     password: password #預設: 系統隨機產生
+turbine:
+  aggregator:
+    cluster-config: default #指定聚合哪些集群, 多個使用逗號分隔, 預設為default. 可使用http://.../turbine.stream?cluster={clusterConfig之一}訪問
+  app-config: cloud-client-ribbon, cloud-client-feign #Eureka中的serviceId列表, 表示要監控的服務, 原則上一定要設定
+  cluster-name-expression: "'default'" #或是new String("default")
+  #1. clusterNameExpression指定集群名稱, 預設為appName; 此時turbine.aggregator.clusterConfig需要配置想要監控的應用名稱
+  #2. 當clusterNameExpression: default時, turbine.aggregator.clusterConfig可以不寫, 因為預設就是default
+  #3. 當clusterNameExpression: metadata['cluster']時, 假設想要監控的應用配置了eureka.instance.metadata-map.cluster: ABC, 則需要配置, 同時turbine.aggregator.clusterConfig: ABC
