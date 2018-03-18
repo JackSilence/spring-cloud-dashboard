@@ -3,3 +3,13 @@ spring:
     name: cloud-dashboard
 server:
   port: 8767
+management:
+  security:
+    enabled: false #端點是否要經過授權, 原則上要輸入帳密還是要使用security依賴
+security:
+  basic:
+    enabled: true #預設: true
+    path: /admin #預設: 全擋
+  user:
+    name: admin #預設: user
+    password: password #預設: 系統隨機產生
